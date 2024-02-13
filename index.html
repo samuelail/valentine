@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine!</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css" class="mw_added_css">
+
+    <style>
+        .grow {
+            transition: transform 0.2s;
+        }
+
+        .grow:hover {
+            transform: scale(1.05);
+        }
+
+        .floating-text {
+            position: absolute;
+            font-size: 1.5rem;
+            /* Adjust the size as you like */
+            color: #ff0000;
+            /* Text color */
+            animation: floatAway 5s ease-in forwards, fadeOut 5s ease-in forwards;
+            opacity: 0.5;
+        }
+
+        @keyframes floatAway {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(0, -100px);
+                /* Adjust the movement as you like */
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            margin-top: 10px;
+            animation: float 5s ease-in infinite, fadeOut 5s ease-in infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 52px;
+            height: 80px;
+            border-radius: 50px 50px 0 0;
+            background: red;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translate(0, -100%) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-pink-100 h-screen flex flex-col items-center justify-center p-4">
+    <h1 id="myText" class="text-4xl text-center mb-8 font-bold text-pink-700">
+        Will you be my Valentine? 😍
+    </h1>
+    <div id="buttonContainer" class="flex flex-col items-center">
+        <button id="yesButton"
+            class="bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow mb-4"
+            type="button">
+            Yes I will 💖
+        </button>
+        <button id="notSureButton" onclick="makeYesButtonBigger(); createFloatingText();"
+            class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline grow"
+            type="button">
+            Not quite sure 🤔
+        </button>
+    </div>
+
+    <!-- Restart Button -->
+    <button id="restartButton" onclick="resetButtons()"
+        class="fixed top-4 right-4 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Restart
+    </button>
+    <script>
+        document.getElementById('yesButton').addEventListener('click', function () {
+            triggerHarlemShake();
+            triggerConfetti();
+        });
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 150,  // Increase the number of particles
+                spread: 360,         // Spread the particles all around
+                startVelocity: 30,   // Increase initial velocity
+                origin: { x: 0.5, y: 0.5 }  // Start from the center of the screen
+            });
+        }
+        function triggerHarlemShake() {
+            javascript: (function () {
+                function c() {
+                    var e = document.createElement("link");
+                    e.setAttribute("type", "text/css");
+                    e.setAttribute("rel", "stylesheet");
+                    e.setAttribute("href", f);
+                    e.setAttribute("class", l);
+                    document.body.appendChild(e)
+                }
+                function h() {
+                    var e = document.getElementsByClassName(l);
+                    for (var t = 0; t < e.length; t++) {
+                        document.body.removeChild(e[t])
+                    }
+                }
+                function p() {
+                    var e = document.createElement("div");
+                    e.setAttribute("class", a);
+                    document.body.appendChild(e);
+                    setTimeout(function () {
+                        document.body.removeChild(e)
+                    }, 100)
+                }
+                function d(e) {
+                    return {
+                        height: e.offsetHeight,
+                        width: e.offsetWidth
+                    }
+                }
+                function v(i) {
+                    var s = d(i);
+                    return s.height > e && s.height < n && s.width > t && s.width < r
+                }
+                function m(e) {
+                    var t = e;
+                    var n = 0;
+                    while (!!t) {
+                        n += t.offsetTop;
+                        t = t.offsetParent
+                    }
+                    return n
+                }
+                function g() {
+                    var e = document.documentElement;
+                    if (!!window.innerWidth) {
+                        return window.innerHeight
+                    } else if (e && !isNaN(e.clientHeight)) {
+                        return e.clientHeight
+                    }
+                    return 0
+                }
+                function y() {
+                    if (window.pageYOffset) {
+                        return window.pageYOffset
+                    }
+                    return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+                }
+                function E(e) {
+                    var t = m(e);
+                    return t >= w && t <= b + w
+                }
+                function S() {
+                    var e = document.createElement("audio");
+                    e.setAttribute("class", l);
+                    e.src = i;
+                    e.loop = false;
+                    e.addEventListener("canplay", function () {
+                        setTimeout(function () {
+                            x(k)
+                        }, 500);
+                        setTimeout(function () {
+                            N();
+                            p();
+                            for (var e = 0; e < O.length; e++) {
+                                T(O[e])
+                            }
+                        }, 15500)
+                    }, true);
+                    e.addEventListener("ended", function () {
+                        N();
+                        h()
+                    }, true);
+                    e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+                    document.body.appendChild(e);
+                    e.play()
+                }
+                function x(e) {
+                    e.className += " " + s + " " + o
+                }
+                function T(e) {
+                    e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+                }
+                function N() {
+                    var e = document.getElementsByClassName(s);
+                    var t = new RegExp("\\b" + s + "\\b");
+                    for (var n = 0; n < e.length;) {
+                        e[n].className = e[n].className.replace(t, "")
+                    }
+                }
+                var e = 30;
+                var t = 30;
+                var n = 350;
+                var r = 350;
+                var i = "https://s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+                var s = "mw-harlem_shake_me";
+                var o = "im_first";
+                var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+                var a = "mw-strobe_light";
+                var f = "https://s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+                var l = "mw_added_css";
+                var b = g();
+                var w = y();
+                var C = document.getElementsByTagName("*");
+                var k = null;
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        if (E(A)) {
+                            k = A;
+                            break
+                        }
+                    }
+                }
+                if (A === null) {
+                    console.warn("Could not find a node of the right size. Please try a different page.");
+                    return
+                }
+                c();
+                S();
+
+                var textElements = document.querySelectorAll('#myText');
+                textElements.forEach(function (element) {
+                    element.classList.add('mw-harlem_shake_me'); // Add the shake class
+                });
+                var O = [];
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        O.push(A)
+                    }
+                }
+            })()
+        }
+
+
+
+        let scaleFactor = 1;
+        const maxScale = 15;
+
+        function makeYesButtonBigger() {
+            const yesButton = document.getElementById('yesButton');
+
+            if (scaleFactor < maxScale) {
+                scaleFactor += 0.3; // Increment scale factor
+                yesButton.style.transform = `scale(${scaleFactor})`;
+            } else {
+                // Cover the entire page
+                yesButton.classList.remove('grow');
+                yesButton.style.position = 'fixed';
+                yesButton.style.top = '0';
+                yesButton.style.left = '0';
+                yesButton.style.width = '100vw';
+                yesButton.style.height = '100vh';
+                yesButton.style.transform = 'none';
+                yesButton.style.zIndex = '10';
+                yesButton.innerHTML = 'You are my Valentine! 🥰'; 
+            }
+        }
+
+        function resetButtons() {
+            scaleFactor = 1;
+            yesButton.classList.add('grow');
+            yesButton.style.position = 'static';
+            yesButton.style.transform = 'scale(1)';
+            yesButton.style.width = 'auto';
+            yesButton.style.height = 'auto';
+            yesButton.style.zIndex = '1';
+            yesButton.innerHTML = 'Yes I will 💖';
+        }
+
+        function createFloatingText() {
+            const texts = [
+                'Pls 😭',
+                'Pretty please 🥺',
+                'Be mine ❤️',
+                'Say yes! 🙏',
+            ];
+
+            const floatText = document.createElement('div');
+            floatText.textContent = texts[Math.floor(Math.random() * texts.length)]; // Select random text
+            floatText.className = 'floating-text';
+            floatText.style.left = Math.random() * window.innerWidth + 'px';
+            floatText.style.top = Math.random() * window.innerHeight + 'px';
+
+            document.body.appendChild(floatText);
+
+            // Remove the text after it fades out
+            setTimeout(() => {
+                floatText.remove();
+            }, 5000);
+        }
+
+
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.setProperty('--moveX', (Math.random() * 200 - 100) + 'px');
+            heart.style.setProperty('--moveY', (Math.random() * 200 - 100) + 'px');
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Duration between 3 and 5 seconds
+
+            document.body.appendChild(heart);
+
+            // Remove the heart after it fades out
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create hearts at intervals
+        setInterval(createHeart, 1000);
+    </script>
+</body>
+
+</html>
